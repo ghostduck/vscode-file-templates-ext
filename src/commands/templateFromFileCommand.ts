@@ -30,8 +30,13 @@ export function run(templatesManager: TemplatesManager, args: any) {
     };
 
     vscode.window.showInputBox(inputOptions).then(filename => {
+        if(!fileName) {
+            // user pressed escape, fileName is undefined
+            return ;
+        }
+
         let fileContents = fs.readFileSync(filePath);
-        let templateFile = path.join(templatesManager.getTemplatesDir(), path.basename(filePath));
+        let templateFile = path.join(templatesManager.getTemplatesDir(), filename);
 
         fs.writeFile(templateFile, fileContents, function (err) {
             if (err) {
