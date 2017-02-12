@@ -30,7 +30,7 @@ export function run(templatesManager: TemplatesManager, args: any) {
     };
 
     vscode.window.showInputBox(inputOptions).then(filename => {
-        if(!fileName) {
+        if (!fileName) {
             // user pressed escape, fileName is undefined
             return ;
         }
